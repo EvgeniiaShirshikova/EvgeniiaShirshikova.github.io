@@ -49,8 +49,8 @@ function createLineVert(wrapper) {
         tlVert.set(lineVert, {
             left: `${gsap.utils.random(10, 90)}%`,
         })
-        .fromTo(lineVert, {y: '0rem'}, {duration: gsap.utils.random(2, 10, 2),
-            y: '40rem'})
+        .fromTo(lineVert, {y: '-20rem'}, {duration: gsap.utils.random(4, 12, 2),
+            y: '30rem'})
         .fromTo(lineVert, {
             opacity: 1}, {duration: 1, 
                 opacity: 0, ease: "power1.out"})
@@ -77,12 +77,11 @@ function createLineHorizLeft(wrapper) {
         tlHorizLeft.set(lineHorizLeft, {
             top: `${gsap.utils.random(20, 80)}%`,
         })
-        .fromTo(lineHorizLeft, {x: '0vw'}, {duration: gsap.utils.random(2, 6, 2),
-            x: '-36vw'})
+        .fromTo(lineHorizLeft, {x: '20vw'}, {duration: gsap.utils.random(2, 6, 2),
+            x: '-22vw'})
         .fromTo(lineHorizLeft, {
             opacity: 1}, {duration: 1, 
                 opacity: 0, ease: "power1.out"})
-
     }
 
     animateLine();
@@ -106,7 +105,7 @@ function createLineHorizRight(wrapper) {
             top: `${gsap.utils.random(20, 80)}%`,
         })
         .fromTo(lineHorizRight, {x: '0vw'}, {duration: gsap.utils.random(2, 6, 2),
-            x: '36vw'})
+            x: '22vw'})
         .fromTo(lineHorizRight, {
             opacity: 1}, {duration: 1, 
                 opacity: 0, ease: "power1.out"})
