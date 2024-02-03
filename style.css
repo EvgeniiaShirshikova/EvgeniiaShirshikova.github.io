@@ -98,11 +98,10 @@ h2 {
   top: 0%;
   width: 1px;
   height: 28vw;
-  background: linear-gradient(
-    to bottom,
-    rgba(16, 202, 153, 0) 0%,
-    #10ca99 100%
-  );
+  background-image: url("line-vert.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: auto;
 }
 
 .lineHorizLeft {
@@ -110,7 +109,10 @@ h2 {
   right: 0%;
   width: 28vw;
   height: 1px;
-  background: linear-gradient(to left, rgba(16, 202, 153, 0) 0%, #10ca99 100%);
+  background-image: url("line-horiz-left.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: auto;
 }
 
 .lineHorizRight {
@@ -118,5 +120,8 @@ h2 {
   left: 0%;
   width: 28vw;
   height: 1px;
-  background: linear-gradient(to right, rgba(16, 202, 153, 0) 0%, #10ca99 100%);
+  background-image: url("line-horiz-right.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: auto;
 }
