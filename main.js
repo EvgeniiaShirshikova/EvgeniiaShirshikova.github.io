@@ -77,8 +77,8 @@ function createLineHorizLeft(wrapper) {
         tlHorizLeft.set(lineHorizLeft, {
             top: `${gsap.utils.random(20, 80)}%`,
         })
-        .fromTo(lineHorizLeft, {x: '28vw'}, {duration: gsap.utils.random(6, 10, 2),
-            x: '-2vw'})
+        .fromTo(lineHorizLeft, {x: '28vw'}, {duration: gsap.utils.random(4, 8, 1),
+            x: '-5vw'})
         .fromTo(lineHorizLeft, {
             opacity: 1}, {duration: 1, 
                 opacity: 0, ease: "power1.out"})
@@ -104,8 +104,8 @@ function createLineHorizRight(wrapper) {
         tlHorizRight.set(lineHorizRight, {
             top: `${gsap.utils.random(20, 80)}%`,
         })
-        .fromTo(lineHorizRight, {x: '-28vw'}, {duration: gsap.utils.random(6, 10, 2),
-            x: '2vw'})
+        .fromTo(lineHorizRight, {x: '-28vw'}, {duration: gsap.utils.random(4, 8, 1),
+            x: '5vw'})
         .fromTo(lineHorizRight, {
             opacity: 1}, {duration: 1, 
                 opacity: 0, ease: "power1.out"})
