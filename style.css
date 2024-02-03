@@ -73,7 +73,7 @@ h2 {
 .lines-horiz {
   position: absolute;
   top: 0%;
-  width: 50%;
+  width: 30%;
   height: 100vh;
   overflow: hidden;
 }
