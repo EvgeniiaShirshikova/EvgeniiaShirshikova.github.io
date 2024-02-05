@@ -96,32 +96,20 @@ h2 {
 .lineVert {
   position: absolute;
   top: 0%;
-  width: 1px;
+  width: 0.5px;
   height: 28vw;
-  background-image: url("line-vert.svg");
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: auto;
 }
 
 .lineHorizLeft {
   position: absolute;
   right: 0%;
   width: 28vw;
-  height: 1px;
-  background-image: url("line-horiz-left.svg");
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: auto;
+  height: 0.5px;
 }
 
 .lineHorizRight {
   position: absolute;
   left: 0%;
   width: 28vw;
-  height: 1px;
-  background-image: url("line-horiz-right.svg");
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: auto;
+  height: 0.5px;
 }
