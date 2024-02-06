@@ -29,17 +29,12 @@ const tlHero = gsap.timeline({});
 
 //анимация линий
 
-const baseLineVert = document.querySelector(".lineVert");
-const baseLineHorizLeft = document.querySelector(".lineHorizLeft");
-const baseLineHorizRight = document.querySelector(".lineHorizRight");
 const frag = document.createDocumentFragment();
 
-
-function createLineVert(wrapper) {  
-    const lineVert = baseLineVert.cloneNode(true);
+function createLineVert(wrapper, baseLine) {
+    const lineVert = baseLine.cloneNode(true);
     frag.appendChild(lineVert);
-    let linesWrapper = document.querySelector(wrapper);
-    linesWrapper.appendChild(frag);
+    wrapper.appendChild(frag);
 
     function animateLine() {
         const tlVert = gsap.timeline({
@@ -54,20 +49,14 @@ function createLineVert(wrapper) {
         .fromTo(lineVert, {
             opacity: 1}, {duration: 1, 
                 opacity: 0, ease: "power1.out"})
-
     }
-
     animateLine();
 }
 
-createLineVert(".lines-vert.left");
-createLineVert(".lines-vert.right");
-
-function createLineHorizLeft(wrapper) {  
-    const lineHorizLeft = baseLineHorizLeft.cloneNode(true);
+function createLineHorizLeft(wrapper, baseLine) {  
+    const lineHorizLeft = baseLine.cloneNode(true);
     frag.appendChild(lineHorizLeft);
-    let linesWrapper = document.querySelector(wrapper);
-    linesWrapper.appendChild(frag);
+    wrapper.appendChild(frag);
 
     function animateLine() {
         const tlHorizLeft = gsap.timeline({
@@ -87,14 +76,10 @@ function createLineHorizLeft(wrapper) {
     animateLine();
 }
 
-createLineHorizLeft('.lines-horiz-top.left');
-createLineHorizLeft('.lines-horiz-bottom.left');
-
-function createLineHorizRight(wrapper) {  
-    const lineHorizRight = baseLineHorizRight.cloneNode(true);
+function createLineHorizRight(wrapper, baseLine) {  
+    const lineHorizRight = baseLine.cloneNode(true);
     frag.appendChild(lineHorizRight);
-    let linesWrapper = document.querySelector(wrapper);
-    linesWrapper.appendChild(frag);
+    wrapper.appendChild(frag);
 
     function animateLine() {
         const tlHorizRight = gsap.timeline({
@@ -109,11 +94,44 @@ function createLineHorizRight(wrapper) {
         .fromTo(lineHorizRight, {
             opacity: 1}, {duration: 1, 
                 opacity: 0, ease: "power1.out"})
-
     }
 
     animateLine();
 }
 
-createLineHorizRight('.lines-horiz-top.right');
-createLineHorizRight('.lines-horiz-bottom.right');
+let sections = document.querySelectorAll('section');
+
+function createLines(section) {
+    createLineVert(section.querySelector('.lines-vert.left'), section.querySelector('.lineVert'));
+    createLineVert(section.querySelector('.lines-vert.right'), section.querySelector('.lineVert'));
+    createLineHorizLeft(section.querySelector('.lines-horiz-top.left'), section.querySelector('.lineHorizLeft'));
+    createLineHorizLeft(section.querySelector('.lines-horiz-bottom.left'), section.querySelector('.lineHorizLeft'));
+    createLineHorizRight(section.querySelector('.lines-horiz-top.right'), section.querySelector('.lineHorizRight'));
+    createLineHorizRight(section.querySelector('.lines-horiz-bottom.right'), section.querySelector('.lineHorizRight'));
+}
+
+function deleteLine (wrapper) {
+    wrapper.innerHTML = '';
+}
+
+function deleteLines(section) {
+    deleteLine(section.querySelector('.lines-vert.left'));
+    deleteLine(section.querySelector('.lines-vert.right'));
+    deleteLine(section.querySelector('.lines-horiz-top.left'));
+    deleteLine(section.querySelector('.lines-horiz-bottom.left'));
+    deleteLine(section.querySelector('.lines-horiz-top.right'));
+    deleteLine(section.querySelector('.lines-horiz-bottom.right'));
+} 
+
+sections.forEach((section) => {
+    ScrollTrigger.create({
+        trigger: section,
+        start: "top bottom",
+        end: "bottom top",
+        //markers: true,
+        onEnter: () => createLines(section),
+        onLeave: () => deleteLines(section),
+        onEnterBack: () => createLines(section),
+        onLeaveBack: () => deleteLines(section),
+    });
+});
