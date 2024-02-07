@@ -29,7 +29,65 @@ const tlHero = gsap.timeline({});
 
 //анимация линий
 
-const frag = document.createDocumentFragment();
+let mediaAnimation = gsap.matchMedia();
+
+mediaAnimation.add("(max-width: 478px)", () => {
+    const frag = document.createDocumentFragment();
+
+    function createLineVert(wrapper, baseLine) {
+        const lineVert = baseLine.cloneNode(true);
+        frag.appendChild(lineVert);
+        wrapper.appendChild(frag);
+    
+        function animateLine() {
+            const tlVert = gsap.timeline({
+                onComplete: animateLine
+            })
+            
+            tlVert.set(lineVert, {
+                left: `${gsap.utils.random(10, 90)}%`,
+            })
+            .fromTo(lineVert, {y: '-10rem'}, {duration: gsap.utils.random(8, 12, 2),
+                y: '20rem'})
+            .fromTo(lineVert, {
+                opacity: 1}, {duration: 1, 
+                    opacity: 0, ease: "power1.out"})
+        }
+        animateLine();
+    }
+    
+    let sections = document.querySelectorAll('section');
+    
+    function createLines(section) {
+        createLineVert(section.querySelector('.lines-vert.left'), section.querySelector('.lineVert-mob'));
+        createLineVert(section.querySelector('.lines-vert.right'), section.querySelector('.lineVert-mob'));
+    }
+    
+    function deleteLine (wrapper) {
+        wrapper.innerHTML = '';
+    }
+    
+    function deleteLines(section) {
+        deleteLine(section.querySelector('.lines-vert.left'));
+        deleteLine(section.querySelector('.lines-vert.right'));
+    } 
+    
+    sections.forEach((section) => {
+        ScrollTrigger.create({
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            onEnter: () => createLines(section),
+            onLeave: () => deleteLines(section),
+            onEnterBack: () => createLines(section),
+            onLeaveBack: () => deleteLines(section),
+        });
+    });
+    
+});
+
+mediaAnimation.add("(min-width: 479px)", () => {
+    const frag = document.createDocumentFragment();
 
 function createLineVert(wrapper, baseLine) {
     const lineVert = baseLine.cloneNode(true);
@@ -128,10 +186,10 @@ sections.forEach((section) => {
         trigger: section,
         start: "top bottom",
         end: "bottom top",
-        //markers: true,
         onEnter: () => createLines(section),
         onLeave: () => deleteLines(section),
         onEnterBack: () => createLines(section),
         onLeaveBack: () => deleteLines(section),
     });
+});
 });
